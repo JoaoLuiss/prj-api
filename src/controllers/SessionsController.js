@@ -22,7 +22,10 @@ class SessionsController {
 			throw new AppError('Senha incorreta.');
 		}
 
+		// acessando as informações de configuração padrão da aplicação
 		const { secret, expiresIn } = authConfig.jwt;
+		
+		// criando o TOKEN com o método sign() da lib jsonwebtoken
 		const token = sign({}, secret, {
 			subject: String(user.id),
 			expiresIn
