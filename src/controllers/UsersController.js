@@ -12,7 +12,6 @@ class UsersController {
 	 */
 
 	async create(request, response) {
-		// try {
 		const { name, email, password } = request.body;
 		const database = await sqliteConnection();
 		const checkUserExists = await database.get(
@@ -29,9 +28,6 @@ class UsersController {
 		);
 
 		return response.status(201).json();
-		// } catch (error) {
-		//   console.error(error);
-		//   return response.status(401).json(error);
 	}
 
 	async update(request, response) {
