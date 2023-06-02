@@ -63,19 +63,21 @@ class NotesController {
 		let notes;
 
 		if (tags) {
-			const filterTags = tags.split(',').map((tag) => tag.trim());
+			const filterTags = tags.split(',').map((tag) => tag.trim()); // .trim()
 
 			notes = await knex('tags')
 				.select(['notes.id', 'notes.title', 'notes.user_id'])
 				.where('notes.user_id', user_id)
-				.whereLike('title', `%${title ?? ''}%`)
-				.whereIn('name', filterTags)
-				.innerJoin('notes', 'notes.id', 'tags.note_id');
+				.whereLike('notes.title', `%${title}%`) //  ?? ''
+				.whereIn('name', filterTags) // sem o: tags.
+				.innerJoin('notes', 'notes.id', 'tags.note_id')
+				.groupBy('notes.id')
+				.orderBy('notes.title');
 		} else {
 			notes = await knex('notes')
 				.where({ user_id })
-				.whereLike('title', `%${title ?? ''}%`)
-				.orderBy('notes.title');
+				.whereLike('title', `%${title}%`) //  ?? ''
+				.orderBy('title'); // notes.
 		}
 
 		const userTags = await knex('tags').where({ user_id });
@@ -86,7 +88,7 @@ class NotesController {
 				tags: noteTags
 			};
 		});
-
+		console.log(notesWithTags);
 		return response.json(notesWithTags);
 	}
 }
