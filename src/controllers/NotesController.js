@@ -88,7 +88,6 @@ class NotesController {
 				tags: noteTags
 			};
 		});
-		console.log(notesWithTags);
 		return response.json(notesWithTags);
 	}
 }
