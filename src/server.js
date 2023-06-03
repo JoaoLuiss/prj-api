@@ -33,5 +33,5 @@ app.use(function (error, req, resp, next) {
 
 const PORT = process.env.PORT || 3333;
 app.listen(PORT, function (req, res) {
-	console.log(`Server is running on port: ${PORT} -> http://localhost:${PORT}`);
+	console.log(`Server is running on port: ${PORT}`);
 });
