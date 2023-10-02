@@ -3,10 +3,10 @@ const path = require('path')
 const uploadConfig = require('../configs/upload')
 
 class DiskStorage{
-  async saveFile(file) {
+  async saveFile(fileName) {
     await fs.promises.rename(
-      path.resolve(uploadConfig.TMP_FOLDER, file),
-      path.resolve(uploadConfig.UPLOADS_FOLDER, file)
+      path.resolve(uploadConfig.TMP_FOLDER, fileName),
+      path.resolve(uploadConfig.UPLOADS_FOLDER, fileName)
     );
 
     /**
@@ -20,11 +20,11 @@ class DiskStorage{
      * que ele faz com o comando fs.promises.rename(endereco_inicial, endereco_final).
      */
 
-    return file;
+    return fileName;
   }
 
-  async deleteFile(file) {
-    const filePath = path.resolve(uploadConfig.UPLOADS_FOLDER, file);
+  async deleteFile(fileName) {
+    const filePath = path.resolve(uploadConfig.UPLOADS_FOLDER, fileName);
 
     try {
       await fs.promises.stat(filePath);
