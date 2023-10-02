@@ -6,10 +6,10 @@ const UserCreateService = require('../services/UserCreateService')
 
 class UsersController {
 	/** Máximo de 5 funções
-	 * index - GET para listar todos os registros
-	 * show - GET individual para um único registro
 	 * crate - POST criar um único registro
 	 * update - PUT para atualizar um único registro
+	 * show - GET individual para um único registro
+	 * index - GET para listar todos os registros
 	 * delete - DELETE para remover um único registro
 	 */
 
